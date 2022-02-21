@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 body {
-  @apply bg-slate-50 text-slate-600;
+  @apply bg-slate-100 text-slate-600;
+}
+
+input {
+  @apply focus:outline-none;
 }
