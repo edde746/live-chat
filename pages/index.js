@@ -16,8 +16,8 @@ export default function Home() {
       </Head>
 
       {!socket && (
-        <div class="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4">
-          <div class="p-4 bg-slate-50 rounded-md">
+        <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center p-4">
+          <div className="p-4 bg-slate-50 rounded-md">
             <h2 className="font-semibold text-lg">Join chat</h2>
             <p className="text-slate-500">Select a username to join the chat room.</p>
             <form
@@ -33,13 +33,10 @@ export default function Home() {
                     setMessages((old) => [...old, { event: "connected" }]);
                   });
 
-                  socket.on("message", (data) => {
-                    setMessages((old) => [...old, data]);
-                  });
+                  socket.on("message", (data) => setMessages((old) => [...old, data]));
+                  socket.on("username", (data) => setUsername(data));
 
-                  socket.on("disconnect", () => {
-                    console.log("disconnect");
-                  });
+                  socket.on("disconnect", () => setSocket(null));
                 });
               }}
             >
